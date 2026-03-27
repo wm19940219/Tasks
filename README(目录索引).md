@@ -2,8 +2,11 @@
 
 ## 目录
 
-- [Git 学习笔记](./Git学习.md)
-- [Markdown 学习笔记](./Markdown学习.md)
-- [GitHub 实践记录](./GitHub学习.md)
-- [阶段二任务](./阶段二任务.md)
+- [Geek阶段一](./Geek阶段一.md)
+- [Git （Geeek）任务学习](./Git学习.md)
+- [GitHub 自我学习（详细）](./GitHub 自我学习（详细）.md)
+- [Markdown 学习](./Markdown学习.md)
+- [GitHub(Geek)任务学习](./GitHub(Geek)任务学习.md)
+- [GitHub 自我学习（详细）](./GitHub学习.md)
+
 - [hello.md](./hello.md)

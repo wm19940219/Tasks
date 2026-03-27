@@ -53,3 +53,34 @@ git push origin main
 更方便、更高效的方式：
 
 我目前知道且用过的： **GitHub Desktop** 内置的 **Git** 插件，通过按钮完成 **add、commit、push**。
+
+
+# 阶段二任务5
+
+1. **版本回滚**
+
+查看提交历史：
+`git log --oneline`
+
+回滚到某次提交（保留之后修改）：
+```
+git reset --soft <commit-hash>   # 撤销提交，保留修改在暂存区
+git reset --mixed <commit-hash>  # 撤销提交，保留修改在工作区
+git reset --hard <commit-hash>   # 彻底回滚，丢失所有后续修改（慎用）
+```
+撤销上一次提交但保留修改：`git reset --soft HEAD~1`
+
+
+2. **冲突解决**
+
+当多人修改同一文件时，`git pull` 或 `git merge` 可能产生冲突。
+
+查看冲突文件：`git status` 会列出 **“both modified”** 的文件。
+
+手动编辑文件，删除 `<<<<<<<`、`=======`、`>>>>>>>` 标记，保留最终需要的内容。
+
+标记已解决：`git add <冲突文件>`
+
+继续合并/提交：`git commit`（或 `git merge --continue`）
+
+推荐在协作时养成 **频繁 pull**、**先 pull 再 push** 的习惯，能有效减少冲突。

@@ -15,6 +15,6 @@
 👉执行 `git config --list`  如果能看到刚才输入的用户名和邮箱，就说明配置成功了  
 👉推荐设置初始默认分支为行业通用的 **main** ,执行：`git config --global init.defaultBranch main`  
 
-## 使用
+# 使用
 
 我只配置完，那个 **GitHub** 就被我登进去了，我就又学到了一种可以直接上传本地 **Markdown** 的方法，就还没使用 **Git**。（下次研究 **Git***）

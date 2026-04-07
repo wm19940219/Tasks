@@ -43,7 +43,9 @@ markdown
 ```
 markdown
 ![截图](./images/screenshot.png)
-./ 表示当前目录，../ 表示上级目录。```
+./ 表示当前目录，../ 表示上级目录。
+```
+
 
 3. 在 **GitHub** 仓库中引用图片
 
@@ -52,7 +54,8 @@ markdown
 ```
 markdown  
 
-![我的截图](images/example.png)```  
+![我的截图](images/example.png)
+```  
 
 推送后，**GitHub** 会自动渲染图片。  
 
@@ -83,7 +86,10 @@ markdown
 ![运行界面](./screenshot.png)
 
 也可以引用网络图片：  
-![示例](https://picsum.photos/200/100)```
+![示例](https://picsum.photos/200/100)
+```
+
+
 
 保存后，支持 **Markdown** 的查看器（**GitHub、GitLab**、本地编辑器）都会显示图片。
 

@@ -18,3 +18,57 @@
 ※ 回到正题  
 👉我将这篇文档放到了我的Tasks仓库，新的问题又来了，我那个文档最初是写在记事本上，它没有渲染效果，所以我不知道 **mMarkdown** 竟然有语法！！！最后通过查询也是了解了一些基本语法并且运用了！✌️（ **Markdown** 中语法特别重要！！！但也不多，多写多用也就好了）
 
+
+## 图片
+
+在 **Markdown** 中插入图片**基本语法**为：  
+`![替代文本](图片地址)`
+
+**具体使用**
+1. 网络图片
+直接复制图片网址：
+```
+markdown
+![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+```
+
+2. 本地图片（💡推荐相对路径）
+将图片放在 **Markdown** 文件所在文件夹或子文件夹中，然后引用：
+```
+markdown
+![截图](./images/screenshot.png)
+./ 表示当前目录，../ 表示上级目录。```
+
+3. 在 **GitHub** 仓库中引用图片
+把图片上传到同一个 **GitHub** 仓库（比如 **images** 文件夹），然后使用相对路径：
+```
+markdown
+![我的截图](images/example.png)```  
+
+推送后，**GitHub** 会自动渲染图片。
+
+4. 直接在 **Markdown** 编辑器中粘贴截图
+**GitHub** 网页支持直接粘贴剪贴板中的截图，会自动上传并生成图片链接。
+
+在 **GitHub** 的 **README** 编辑框中，也可以直接拖拽图片文件到编辑区，会自动生成` ![image](https://user-images.githubusercontent.com/...) `格式。
+
+调整图片大小（**HTML** 方式）
+原生 **Markdown** 不支持宽高设置，可以混用 **HTML**：
+```
+html
+<img src="images/photo.jpg" alt="描述" width="300" />
+示例
+markdown
+# 我的项目
+
+下面是项目截图：
+
+![运行界面](./screenshot.png)
+
+也可以引用网络图片：  
+![示例](https://picsum.photos/200/100)```
+
+保存后，支持 **Markdown** 的查看器（**GitHub、GitLab**、本地编辑器）都会显示图片。
+
+
+

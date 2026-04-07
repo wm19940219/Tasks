@@ -7,6 +7,7 @@
 
 ---
 
+
 # 我的学习仓库
 
 ## 目录
@@ -17,8 +18,15 @@
 - [Markdown 学习](./Markdown学习.md)
 - [GitHub(Geek)任务学习](./GitHub(Geek)任务学习.md)
 - [GitHub 自我学习（详细）](./GitHub学习.md)
-
+- [HTML学习](./HTML学习.md)
+- [JavaScript学习笔记](./JavaScript学习笔记.md)
+- [CSS学习笔记](./CSS学习笔记.md)
 - [hello.md](./hello.md)
+- [网页制作](./网页制作.md)
+
+## 完成的项目
+- [我的静态网页](https://wm19940219.github.io/my-webpage/)
+
 
 
 ## 🌏 About Me

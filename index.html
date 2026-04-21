@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新思路Geek组 · 招新官网</title>
+    <style>
+        /* ========== 全局样式（白色背景） ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+            background: #ffffff;
+            color: #1e293b;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            padding-top: 70px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== 固定导航栏（水平展开，链接有浮动效果） ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            padding: 12px 24px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #c084fc, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .nav-links li {
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+        .nav-links li:hover {
+            transform: translateY(-3px);
+        }
+
+        .nav-links a {
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        /* 导航栏悬浮二维码（仅 Contact Us） */
+        .hover-qrcode {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 12px;
+            background: white;
+            padding: 8px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            z-index: 1100;
+            display: none;
+            width: 130px;
+            text-align: center;
+        }
+        .hover-qrcode img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .hover-qrcode::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+        }
+        .nav-links li:hover .hover-qrcode {
+            display: block;
+        }
+
+        /* ========== 中央 Hero 区域 ========== */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('background_Homepage.png') center/cover no-repeat;
+            position: relative;
+            margin-bottom: 60px;
+        }
+        /* 透明容器，无背景无内边距 */
+        .hero-content {
+            background: transparent;
+            backdrop-filter: none;
+            padding: 0;
+            border-radius: 0;
+            display: inline-block;
+        }
+        /* 中央艺术字图片：透明，大幅浮动效果 */
+        .hero-logo {
+            max-width: 80%;
+            width: 500px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            display: block;
+            margin: -200px auto 0;  /* 向上移动避免遮挡背景 */
+        }
+        .hero-logo:hover {
+            transform: translateY(-25px) scale(1.08);
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.25));
+        }
+
+        /* ========== 卡片左右交替布局（白色卡片，深色文字） ========== */
+        .card {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            margin-bottom: 80px;
+            background: #f8fafc;
+            border-radius: 32px;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+        }
+        .card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .card-img {
+            flex: 1;
+            text-align: center;
+        }
+        .card-img img {
+            max-width: 100%;
+            width: 260px;
+            border-radius: 24px;
+            transition: transform 0.3s;
+        }
+        .card-img img:hover {
+            transform: translateY(-6px);
+        }
+        .card-content {
+            flex: 1.5;
+        }
+        .card-content h3 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            color: #0f172a;
+        }
+        .quote {
+            font-style: italic;
+            color: #475569;
+            margin-bottom: 20px;
+            border-left: 3px solid #3b82f6;
+            padding-left: 16px;
+        }
+        .card-content p {
+            color: #334155;
+            margin-bottom: 12px;
+        }
+
+        /* ========== About Us 区域 ========== */
+        .about {
+            background: #f1f5f9;
+            border-radius: 48px;
+            padding: 60px 40px;
+            margin: 80px 0;
+            position: relative;
+            overflow: visible;
+        }
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 32px;
+            text-align: center;
+            color: #0f172a;
+        }
+        .about-features {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 48px;
+        }
+        .feature {
+            flex: 1;
+            min-width: 200px;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 32px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        .feature-icon {
+            width: 80px;
+            margin-bottom: 16px;
+            transition: transform 0.3s;
+        }
+        .feature-icon:hover {
+            transform: translateY(-4px);
+        }
+        .feature h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: #3b82f6;
+        }
+        .feature p {
+            color: #334155;
+        }
+
+        /* 右下角蝴蝶图片 + 浮动显示小字 */
+        .butterfly-wrapper {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .butterfly {
+            width: 100px;
+            transition: transform 0.3s;
+            display: block;
+        }
+        .butterfly-wrapper:hover .butterfly {
+            transform: translateY(-8px);
+        }
+        .butterfly-tooltip {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background: #3b82f6;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            margin-bottom: 8px;
+        }
+        .butterfly-wrapper:hover .butterfly-tooltip {
+            opacity: 1;
+        }
+
+        /* ========== Contact Us 区域 ========== */
+        .contact-section {
+            margin: 80px 0;
+        }
+        .contact-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #f8fafc;
+            border-radius: 32px;
+            padding: 40px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        .contact-box h4 {
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            color: #0f172a;
+        }
+        .contact-intro {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        .contact-intro p {
+            margin-bottom: 12px;
+            color: #1e293b;
+        }
+        .ps-note {
+            font-size: 0.9rem;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 12px 16px;
+            border-radius: 16px;
+            margin-top: 16px;
+            border-left: 3px solid #3b82f6;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin: 30px 0 20px;
+        }
+        .social-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #3b82f6;
+            background: #eef2ff;
+            padding: 8px 20px;
+            border-radius: 40px;
+            transition: 0.2s;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .social-links a:hover {
+            background: #3b82f6;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* 点击QQ Group时显示的二维码浮层 */
+        .temp-qrcode {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 24px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+            z-index: 1200;
+            text-align: center;
+            display: none;
+        }
+        .temp-qrcode img {
+            width: 180px;
+        }
+        .temp-qrcode p {
+            margin-top: 12px;
+            color: #1e293b;
+        }
+        .temp-qrcode button {
+            margin-top: 12px;
+            background: #3b82f6;
+            border: none;
+            color: white;
+            padding: 6px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        /* 自定义确认框（复制邮箱） */
+        .custom-confirm {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            padding: 20px 28px;
+            z-index: 1300;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            display: none;
+        }
+        .custom-confirm p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #0f172a;
+        }
+        .custom-confirm button {
+            margin: 0 10px;
+            padding: 8px 24px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .confirm-yes {
+            background: #3b82f6;
+            color: white;
+        }
+        .confirm-no {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        /* ========== 问答部分（整体浮动 + 单个浮动） ========== */
+        .faq {
+            margin: 80px 0;
+            background: url('background_QA.png') center/cover no-repeat;
+            border-radius: 48px;
+            padding: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .faq:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .faq h2 {
+            font-size: 2rem;
+            margin-bottom: 32px;
+            color: #0f172a;
+            text-align: center;
+        }
+        .faq-item {
+            background: #ffffff;
+            margin-bottom: 16px;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .faq-item:hover {
+            transform: translateX(6px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 20px 28px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e293b;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .faq-question:hover {
+            background: #f1f5f9;
+            transform: translateX(4px);
+        }
+        .faq-question .icon {
+            font-size: 1.6rem;
+            color: #3b82f6;
+        }
+        .faq-answer {
+            display: none;
+            padding: 0 28px 24px;
+            color: #334155;
+            border-top: 1px solid #e2e8f0;
+            background: #ffffff;
+        }
+        .faq-answer.show {
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            background: #f8fafc;
+        }
+
+        /* 返回顶部按钮 */
+        .go-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #3b82f6;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: 0.2s;
+            z-index: 999;
+            text-decoration: none;
+        }
+        .go-top:hover {
+            transform: translateY(-5px);
+            background: #2563eb;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            body { padding-top: 100px; }
+            .nav-container { flex-direction: column; text-align: center; }
+            .nav-links { justify-content: center; gap: 18px; }
+            .card, .card:nth-child(even) { flex-direction: column; text-align: center; padding: 24px; }
+            .about-features { flex-direction: column; }
+            .hero-logo { width: 90%; margin-top: -20px; }
+            .butterfly-wrapper { bottom: 10px; right: 10px; }
+            .butterfly { width: 70px; }
+            .go-top { width: 44px; height: 44px; font-size: 24px; bottom: 20px; right: 20px; }
+            .faq { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 固定导航栏（水平展开，链接有浮动效果） -->
+<nav>
+    <div class="nav-container">
+        <div class="logo">🔧 GEEK</div>
+        <ul class="nav-links">
+            <li><a href="#about">About US 🏠</a></li>
+            /* 招新链接：任务里给的链接已经进不去了，所以改为了26年新思路招新官网链接 */
+            <li><a href="https://recruit.new-thread.com" id="newthreadLink" target="_blank">NewThread 🐘</a>
+            <li> 
+                <a href="#contact">Contact Us 📧</a>
+                <div class="hover-qrcode">
+                    <img src="qrcode_1699620268564.jpg" alt="招新二维码" onerror="this.src='https://placehold.co/130x130?text=QR'">
+                    <p style="margin:5px 0 0; font-size:10px; color:#333;">扫码加群</p>
+                </div>
+            </li>
+            <li><a href="#faq">Q&A 👩‍🎓</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <!-- 中央 Hero 区域：背景图 background_Homepage.png，中央 decoration_Geek.png -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <img src="decoration_Geek.png" alt="GEEK" class="hero-logo">
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- 四个方向卡片-->
+        <div class="card" id="dev">
+            <div class="card-img">
+                <img src="Geek_Programmer.png" alt="开发程序猿" onerror="this.src='https://placehold.co/400x300/e2e8f0/1e293b?text=Dev'">
+            </div>
+            <div class="card-content">
+                <h3>开发程序猿</h3>
+                <div class="quote">“Stay Hungry，Stay Foolish”</div>
+                <p><strong>前端：</strong>前端开发是创建Web或app视觉界面呈现给用户的过程通过HTML，CSS及JavaScript以及衍生出来的各种技术、框架、解决方案，实现互联网产品的用户界面交互。</p>
+                <p><strong>后端：</strong>通常也称服务器端开发。不对用户显示，负责处理前端的请求，进行逻辑处理和数据交互。</p>
+                <p><strong>客户端：</strong>移动应用开发是为了小型、无线计算设备编写软件的流程和程序的集合，例如智能手机或平板电脑。</p>
+            </div>
+        </div>
+
+        <div class="card" id="pm">
+            <div class="card-img">
+                <img src="Geek_PM.png" alt="产品经理" onerror="this.src='https://placehold.co/400x300/e2e8f0/1e293b?text=PM'">
+            </div>
+            <div class="card-content">
+                <h3>产品经理</h3>
+                <div class="quote">“好的软件的特征是，明明没用过，但总觉得用过似的。”</div>
+                <p>PM是针对某一项或是某一类的产品进行规划和管理的人员。PM需要拥有缜密的产品逻辑思维，研究用户心理，负责产品的整个生命周期。PM参与产品的UI和交互设计，为设计和开发确定产品原型，能够将产品变得有个性，操作变得舒适简单、自由。PM需要一定的文档能力和沟通能力，能够在团队合作的过程中跟各个角色进行有效沟通。</p>
+            </div>
+        </div>
+
+        <div class="card" id="game">
+            <div class="card-img">
+                <img src="Geek_Game.png" alt="游戏开发" onerror="this.src='https://placehold.co/400x300/e2e8f0/1e293b?text=Game'">
+            </div>
+            <div class="card-content">
+                <h3>游戏开发</h3>
+                <div class="quote">“TECH OTAKUS SAVE THE WORLD”</div>
+                <p>对游戏开发的热爱和追求，使我们相聚于此。涉及计算机图形学的学习，我们使用物理模拟引擎Unity开发我们所追求的世界，一个故事，一个角色，在我们的世界里改变现实，创造新的可能，我们参与，我们改变，我们创造...</p>
+            </div>
+        </div>
+
+        <div class="card" id="security">
+            <div class="card-img">
+                <img src="Geek_security.png" alt="安全" onerror="this.src='https://placehold.co/400x300/e2e8f0/1e293b?text=Security'">
+            </div>
+            <div class="card-content">
+                <h3>安全</h3>
+                <div class="quote">“路漫漫其修远兮，非大毅力者不能”</div>
+                <p>我们主要学习Web安全和二进制安全。在Web安全中我们将学习和实践Web漏洞挖掘技术，也将探索和讨论Web安全实践的方法。在二进制安全中我们专注于分析和防御与计算机程序、系统相关的威胁，同时实践漏洞分析和修补。耐心和钻研缺一不可。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us 区域（右下角蝴蝶图片 + 悬浮小字） -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-features">
+                <div class="feature">
+                    <img src="about_Speech.png" alt="Speech" class="feature-icon" onerror="this.src='https://placehold.co/80x80/e2e8f0/1e293b?text=Speech'">
+                    <h3>📌 Speech</h3>
+                    <p>每周我们会举行一次技术例会，用来汇报我们的学习内容，供成员之间交流学习。</p>
+                </div>
+                <div class="feature">
+                    <img src="about_Diversity.png" alt="Diversity" class="feature-icon" onerror="this.src='https://placehold.co/80x80/e2e8f0/1e293b?text=Diversity'">
+                    <h3>🌈 Diversity</h3>
+                    <p>多元化是我们的特色。在这里，你可以拥有多种方向选择，前后端、安全、AI、产品/设计、游戏等。</p>
+                </div>
+                <div class="feature">
+                    <img src="about_Time.png" alt="30+H" class="feature-icon" onerror="this.src='https://placehold.co/80x80/e2e8f0/1e293b?text=30H'">
+                    <h3>⏱️ 30+ H</h3>
+                    <p>耐心、毅力是我们必备的品质，每周我们会至少花30小时在实验室中。以保证技术的精进。</p>
+                </div>
+            </div>
+        </div>
+        <!-- 右下角蝴蝶装饰图片 + 小字 -->
+        <div class="butterfly-wrapper">
+            <img src="decoration_Butterfly.png" alt="butterfly" class="butterfly" onerror="this.src='https://placehold.co/100x80/e2e8f0/1e293b?text=🦋'">
+            <div class="butterfly-tooltip">保持好奇心！！！</div>
+        </div>
+    </section>
+
+    <!-- Contact Us 区域 -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-box">
+                <h4>Contact Us</h4>
+                <div class="contact-intro">
+                    <p>🔥 热爱计算机，具有geek精神，喜欢DIY，动手能力较强<br>
+                    • 有编程/算法/硬件基础为佳(有作品可附上)<br>
+                    • 有足够的空余时间，热爱思考，对事物有自己的见解</p>
+                    <div class="ps-note">
+                        📩 ps: 非新思路统招只有通过发送邮件自我介绍后，收到邮件回执后才会被允许进群，在读学生，都可邮件到下方地址报名加入。(信中需备注个人基本信息以及意向方向，此招新活动为长期招新)
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a id="qqGroupBtn">QQ-Group</a>
+                    <a id="emailCopyBtn">E-mail</a>
+                    <a id="githubBtn" href="https://www.bilibili.com/video/BV1GJ411x7h7?vd_source=72695d2215f24386a783a2ca9b82fb3a" target="_blank">Github</a>
+                </div>   
+            </div>
+        </div>
+    </section>
+
+    <!-- 问答区域（整体浮动，问题独立浮动） -->
+    <div class="container">
+        <section id="faq" class="faq">
+            <h2>❓ More Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">1. 什么是Geek(极客)？Geek精神又是什么？<span class="icon">+</span></button>
+                    <div class="faq-answer">拥有好奇之心，改变之力，爱钻研，能折腾。</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">2. 招新是安排在什么时间？<span class="icon">+</span></button>
+                    <div class="faq-answer">按照惯例，正式招新时间是在9月下旬~10月上旬，不过今年会有一些改动，笔试地点一般在9号教学楼。 如果想要了解我们，可以加入我们的QQ群，招新具体的安排/变动会在招新群通知。</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">3. 我们有考核吗？考核流程是怎样的呀？<span class="icon">+</span></button>
+                    <div class="faq-answer">嗯...我们一共有一轮笔试和两轮面试。权衡技术、经验和学习能力，第一轮是一些视野性的题目，淘汰率并不高。第二轮单独面试， 根据你的笔试提出技术相关的问题、兴趣爱好、个人看法。最后一轮群面，首先问及时间分配上的问题，其次也会向你提出各种奇怪的问题。这一轮中许多题目其实并不难，也无标准答案，重在考察同学们在压力下的逻辑思维。全部通过成为预备成员啦。</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">4. 考核是怎样的形式？<span class="icon">+</span></button>
+                    <div class="faq-answer">在考核期间每人会拥有一位'长者'带你入门，学习技术与知识，交流经验与想法。完成每周的新人任务后再进行一次考核筛选 后就可以成为Geek组正式成员啦！在考核期必须满足每周30个小时在实验室哦，所以考核期也不可以懈怠哦！</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">5. 进入Geek组之后都有什么福利呢？<span class="icon">+</span></button>
+                    <div class="faq-answer">一对一的新人指引，每一个成员都有会一个mentor, 带你初入门槛，与你一同成长，组内管理较宽松，在尊重其他人的前提下可以尽情发挥自己的个性。 打破平淡，与同样疯狂的人把疯狂的idea实现，磨砺耐性、培养思维、成就梦想。Lab设备/网络资源充足，闲暇之余也有组织活动。更有许多的故事等你来听~</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">6. 进入团队会影响我的日常学习吗？<span class="icon">+</span></button>
+                    <div class="faq-answer">你要知道大学是一个可以自由安排自己学习生活的地方。如果你想在上课之余充实自己、激励自己，最好的方法就是和比自己更优秀的人在一起。团队不缺优秀的人，而我们也期待同样优秀的你，让我们一起前进！小组里也有不少保研, 考研的前辈们, 大部分都能找到一个平衡点, 而且团队的经历对你日后读研, 工作都大有裨益。</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">7. 老师以及学长学姐们的期望是什么?<span class="icon">+</span></button>
+                    <div class="faq-answer">我们希望你有很强的自学能力，同时关注新事物、新技术，喜欢挑战，逻辑性强，善于和各种文化的人合作。“每个人都可以做自己想做的事情，每个人的方向不一样。 如果你想做产品或有不错的 idea，那么就可以找志同道合的人一起合作。”</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="container">© 2023-2025 新思路Geek组 | 长期招新 以极客之心探索未来</div>
+</footer>
+
+<!-- 返回顶部按钮 -->
+<a href="#" class="go-top" title="返回顶部">🚀</a>
+
+<!-- 临时二维码浮层（点击QQ Group时显示） -->
+<div id="tempQrcode" class="temp-qrcode">
+    <img src="qrcode_1699620268564.jpg" alt="二维码" onerror="this.src='https://placehold.co/180x180?text=QR'">
+    <p>扫码加入招新群</p>
+    <button id="closeTempQrcode">关闭</button>
+</div>
+
+<!-- 自定义确认框（复制邮箱） -->
+<div id="customConfirm" class="custom-confirm">
+    <p>邮箱复制好啦！😄</p>
+    <button id="confirmNo" class="confirm-no">取消</button>
+    <button id="confirmYes" class="confirm-yes">确定</button>
+</div>
+
+<script>
+    // 1. 复制邮箱功能（自定义确认框）
+    const emailAddr = 'newthread_geek@outlook.com';
+    const confirmBox = document.getElementById('customConfirm');
+    const confirmYesBtn = document.getElementById('confirmYes');
+    const confirmNoBtn = document.getElementById('confirmNo');
+    let pendingResolve = null;
+
+    function showConfirm(message) {
+        confirmBox.querySelector('p').textContent = message;
+        confirmBox.style.display = 'block';
+        return new Promise((resolve, reject) => {
+            const handleYes = () => {
+                confirmBox.style.display = 'none';
+                confirmYesBtn.removeEventListener('click', handleYes);
+                confirmNoBtn.removeEventListener('click', handleNo);
+                resolve(true);
+            };
+            const handleNo = () => {
+                confirmBox.style.display = 'none';
+                confirmYesBtn.removeEventListener('click', handleYes);
+                confirmNoBtn.removeEventListener('click', handleNo);
+                resolve(false);
+            };
+            confirmYesBtn.addEventListener('click', handleYes);
+            confirmNoBtn.addEventListener('click', handleNo);
+        });
+    }
+
+    document.getElementById('emailCopyBtn').addEventListener('click', async () => {
+        const confirmed = await showConfirm('邮箱复制好啦！😄');
+        if (confirmed) {
+            navigator.clipboard.writeText(emailAddr).then(() => {
+                // 复制成功后可额外提示（但确认框已经处理）
+            }).catch(() => {
+                alert('❌ 复制失败，请手动复制');
+            });
+        }
+    });
+
+    // 2. QQ Group 点击显示二维码浮层
+    const qqGroupBtn = document.getElementById('qqGroupBtn');
+    const tempQrcode = document.getElementById('tempQrcode');
+    const closeQrcode = document.getElementById('closeTempQrcode');
+    qqGroupBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        tempQrcode.style.display = 'block';
+    });
+    closeQrcode.addEventListener('click', () => {
+        tempQrcode.style.display = 'none';
+    });
+    // 点击空白处关闭二维码浮层
+    window.addEventListener('click', (e) => {
+        if (e.target === tempQrcode) {
+            tempQrcode.style.display = 'none';
+        }
+    });
+
+    // 3. 折叠问答（点击切换答案）
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const ans = btn.nextElementSibling;
+            const icon = btn.querySelector('.icon');
+            if (ans.classList.contains('show')) {
+                ans.classList.remove('show');
+                icon.textContent = '+';
+            } else {
+                ans.classList.add('show');
+                icon.textContent = '−';
+            }
+        });
+    });
+
+    // 4. 修复固定导航栏锚点偏移
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // 5. 返回顶部按钮平滑滚动
+    const goTopBtn = document.querySelector('.go-top');
+    if (goTopBtn) {
+        goTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    const newthreadLink = document.getElementById('newthreadLink');
+    const githubBtn = document.getElementById('githubBtn');
+ 
+</script>
+</body>
+</html>

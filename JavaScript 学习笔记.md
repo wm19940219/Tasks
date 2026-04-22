@@ -67,6 +67,6 @@ document.getElementById('emailCopyBtn').addEventListener('click', async () => {
 
 ## 🔍 调试JS的救命稻草
 
-console.log(变量)`：在控制台输出，看代码有没有执行到这一行。
+`console.log`(变量)：在控制台输出，看代码有没有执行到这一行。
 
 用 `F12 → Sources` 打断点，让代码一行一行跑，就像看慢动作回放。
